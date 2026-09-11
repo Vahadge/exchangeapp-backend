@@ -11,7 +11,10 @@ export interface RootConfig {
 export default (): RootConfig => ({
   app: {
     port: Number(process.env.PORT) || 3000,
-    frontendUrl: process.env.FRONTEND_URL ?? 'http://localhost:5173',
+    frontendUrl: (process.env.FRONTEND_URL ?? 'http://localhost:5173').replace(
+      /\/+$/,
+      '',
+    ),
     freeCurrencyApiKey: process.env.FREECURRENCY_API_KEY ?? '',
   },
 });
